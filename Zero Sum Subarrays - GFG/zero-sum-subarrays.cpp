@@ -18,13 +18,20 @@ public:
         long long int sum=0;
         
         map<long long int,int>mp;
-        mp[0]++;
-        
+       
         for(int i=0;i<n;i++)
         {
-            sum=sum+arr[i];
+            sum+=arr[i];
+            
+            if(sum==0) ans++;
+            
             mp[sum]++;
-            ans=ans+mp[sum]-1;
+        }
+        
+        for(auto v:mp)
+        {
+            int t=v.second;
+            ans=ans+(t*(t-1))/2;
         }
         return ans;
     }
