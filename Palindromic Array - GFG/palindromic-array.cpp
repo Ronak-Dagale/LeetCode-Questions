@@ -11,22 +11,15 @@ class Solution {
 public:
 bool ispalin(int n)
 {
-    vector<int>chk;
-    while(n)
-    {
-        chk.push_back(n%10);
-        n=n/10;
-    }
-    int i=0,j=chk.size()-1;
-    while(i<j)
-    {
-        if(chk[i]!=chk[j])
-        return 0;
-        
-        i++;
-        j--;
-    }
-    return 1;
+   int reverse=0;
+   int temp=n;
+   
+   while(temp)
+   {
+       reverse=(reverse*10)+temp%10;
+       temp=temp/10;
+   }
+   return reverse==n;
 }
     int PalinArray(int a[], int n)
     {
