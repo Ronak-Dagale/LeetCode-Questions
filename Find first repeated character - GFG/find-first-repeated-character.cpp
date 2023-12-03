@@ -25,11 +25,8 @@ string firstRepChar(string s)
     {
         mp[s[i]]++;
         if(mp[s[i]]>1)
-        {
-            string ans="";
-            ans.push_back(s[i]);
-            return ans;
-        }
+        return string(1,s[i]);
+    
     }
     return "-1";
 }
