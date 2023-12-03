@@ -9,6 +9,27 @@ class Solution
 {
     public:
     //Function to search a given number in row-column sorted matrix.
+    bool ispresent(vector<vector<int> > &matrix,int i,int m,int x)
+    {
+        int s=0,e=m-1;
+        while(s<=e)
+        {
+            int mid=(e+s)/2;
+            
+            if(matrix[i][mid]==x)
+            return 1;
+            
+            if(matrix[i][mid]>x)
+            {
+                e=mid-1;
+            }
+            else
+            {
+                s=mid+1;
+            }
+        }
+        return 0;
+    }
     bool search(vector<vector<int> > matrix, int n, int m, int x) 
     {
         // code here 
@@ -18,7 +39,7 @@ class Solution
             {
                 for(int j=0;j<m;j++)
                 {
-                    if(matrix[i][j]==x)
+                    if(ispresent(matrix,i,m,x))
                     return 1;
                 }
             }
