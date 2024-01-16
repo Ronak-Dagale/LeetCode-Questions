@@ -12,45 +12,14 @@
 class Solution {
 public:
     bool isSymmetric(TreeNode* root) {
-        queue<TreeNode*>q;
-        q.push(root);
+       return ismirror(root->left,root->right);
+    }
+    
+    bool ismirror(TreeNode* n1,TreeNode* n2)
+    {
+        if(n1==NULL && n2==NULL) return 1;
+        if(n1==NULL || n2==NULL) return 0;
         
-        while(!q.empty())
-        {
-           int size=q.size();
-            vector<int>v;
-            while(size--)
-            {
-                TreeNode*front=q.front();
-                q.pop();
-                
-                if(front->left!=NULL)
-                {
-                    v.push_back(front->left->val);
-                    q.push(front->left);
-                }
-                else
-                    v.push_back(-200);
-                
-                if(front->right!=NULL)
-                {
-                    v.push_back(front->right->val);
-                    q.push(front->right);
-                }
-                else
-                    v.push_back(-200);
-            }
-            
-            int i=0,j=v.size()-1;
-            while(i<j)
-            {
-                if(v[i]!=v[j])
-                    return 0;
-                
-                i++;
-                j--;
-            }
-        }
-        return 1;
+        return (n1->val==n2->val) && ismirror(n1->left,n2->right) && ismirror(n1->right,n2->left);
     }
 };
