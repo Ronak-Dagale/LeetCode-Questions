@@ -52,6 +52,30 @@ public:
         }
         return dp[0][0];
     }
+    int solveopt(vector<int>& arr)
+    {
+        int n=arr.size();
+    
+        vector<int>curr(n+1,0);
+        vector<int>ne(n+1,0);
+        
+        for(int id=n-1;id>=0;id--)
+        {
+            for(int time=id;time>=0;time--)
+            {
+                  int incl=0,excl=0;
+        
+        //include
+        incl=arr[id]*(time+1)+ne[time+1];
+        
+        excl=0+ne[time];
+        
+         curr[time]=max(incl,excl);
+            }
+            ne=curr;
+        }
+        return ne[0];
+    }
     int maxSatisfaction(vector<int>& satisfaction) {
         sort(satisfaction.begin(),satisfaction.end());
         //return solve(satisfaction,0,0);
@@ -61,7 +85,8 @@ public:
         // vector<vector<int>>dp(n,vector<int>(n,-1));
         // return solvemem(satisfaction,0,0,dp);
         
-        return solvetab(satisfaction);
+        //return solvetab(satisfaction);
+        return solveopt(satisfaction);
         
     }
 };
