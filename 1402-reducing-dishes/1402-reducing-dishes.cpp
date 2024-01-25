@@ -31,14 +31,37 @@ public:
         
         return dp[id][time]=max(incl,excl);
     }
+    int solvetab(vector<int>& arr)
+    {
+        int n=arr.size();
+      vector<vector<int>>dp(n+1,vector<int>(n+1,0));  
+        
+        for(int id=n-1;id>=0;id--)
+        {
+            for(int time=id;time>=0;time--)
+            {
+                  int incl=0,excl=0;
+        
+        //include
+        incl=arr[id]*(time+1)+dp[id+1][time+1];
+        
+        excl=0+dp[id+1][time];
+        
+         dp[id][time]=max(incl,excl);
+            }
+        }
+        return dp[0][0];
+    }
     int maxSatisfaction(vector<int>& satisfaction) {
         sort(satisfaction.begin(),satisfaction.end());
         //return solve(satisfaction,0,0);
         
         int n=satisfaction.size();
         
-        vector<vector<int>>dp(n,vector<int>(n,-1));
-        return solvemem(satisfaction,0,0,dp);
+        // vector<vector<int>>dp(n,vector<int>(n,-1));
+        // return solvemem(satisfaction,0,0,dp);
+        
+        return solvetab(satisfaction);
         
     }
 };
