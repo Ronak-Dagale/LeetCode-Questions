@@ -1,23 +1,27 @@
 class Solution {
 public:
-    int solve(int n,int k,int x,vector<vector<int>>&dp)
-    {
-        if(n==0 && x==0) return 1;
-        if(n!=0 && x<=0) return 0;
-        if(n==0 && x!=0) return 0;
+  
+    int numRollsToTarget(int N, int K, int target) {
+       vector<vector<int>>dp(N+1,vector<int>(target+1,0));
         
-        if(dp[n][x]!=-1) return dp[n][x];
-        
-        int mod=1e9+7;
-        int way=0;
-        for(int i=1;i<=k;i++)
+       dp[0][0]=1;
+        for(int n=1;n<=N;n++)
         {
-           way=(way+solve(n-1,k,x-i,dp))%mod;
+          for(int x=1;x<=target;x++)
+          {
+              int mod=1e9+7;
+        int way=0;
+              
+              for(int i=1;i<=K;i++)
+              {
+                  if(x-i>=0)
+                   way=(way+dp[n-1][x-i])%mod;
+              }
+              dp[n][x]=way;
+          }
         }
-        return dp[n][x]=way%mod;
-    }
-    int numRollsToTarget(int n, int k, int target) {
-       vector<vector<int>>dp(n+1,vector<int>(target+1,-1));
-        return solve(n,k,target,dp);
+        
+        return dp[N][target];
+       
     }
 };
