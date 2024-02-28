@@ -11,8 +11,10 @@ public:
             string v4="";
             for(int j=0;j<n;j++)
             {
-               v3=v3+","+to_string(grid[i][j]);
-               v4=v4+","+to_string(grid[j][i]);
+               v3.push_back(',');
+             v3=v3+to_string(grid[i][j]);
+                v4.push_back(',');
+                 v4=v4+to_string(grid[j][i]);
             }
             v1.push_back(v3);
             v2.push_back(v4);
