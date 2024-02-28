@@ -11,33 +11,19 @@
  */
 class Solution {
 public:
+   int ans=0, level=-1;
+    void dfs(TreeNode* node, int h){
+        if (!node) return;
+
+        if (h>level){
+            ans=node->val;
+            level=h;
+        } 
+        dfs(node->left, h+1);// Recursion uses system stack FILO
+        dfs(node->right, h+1);
+    }
     int findBottomLeftValue(TreeNode* root) {
-        int ans=root->val;
-        
-        queue<TreeNode*>q;
-        q.push(root);
-        
-        while(!q.empty())
-        {
-            int cnt=0;
-            int size=q.size();
-            while(size--)
-            {
-                TreeNode* front=q.front();
-                q.pop();
-    
-                if(cnt==0)
-                {
-                  ans=front->val;
-                    cnt++;
-                }
-                
-                if(front->left!=NULL)
-                    q.push(front->left);
-                if(front->right!=NULL)
-                    q.push(front->right);
-            }
-        }
+        dfs(root, 0);
         return ans;
     }
 };
