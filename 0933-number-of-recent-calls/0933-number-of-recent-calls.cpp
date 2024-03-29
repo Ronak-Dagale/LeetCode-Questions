@@ -6,9 +6,9 @@ public:
     }
     
     int ping(int t) {
-        int mini=t-3000;
         
-        while(!q.empty() && mini>q.front())
+        
+        while(!q.empty() && t-3000>q.front())
             q.pop();
         
         q.push(t);
