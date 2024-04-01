@@ -6,7 +6,7 @@ public:
         
         while(n>=0)
         {
-            while(s[n--]==' ');
+            while(n>=0 && s[n--]==' ');
             n++;
             
             while(n>=0 && s[n--]!=' ')
