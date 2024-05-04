@@ -5,19 +5,18 @@ public:
         int i=0,j=people.size()-1;
         
         sort(people.begin(),people.end());
+        
         while(i<=j)
         {
             if(people[j]+people[i]<=limit)
             {
-                ans++;
                 i++;
                 j--;
             }
-            else if(people[j]<=limit)
-            {
+            else
                 j--;
-                ans++;
-            }
+            
+             ans++;
         }
         return ans;
     }
