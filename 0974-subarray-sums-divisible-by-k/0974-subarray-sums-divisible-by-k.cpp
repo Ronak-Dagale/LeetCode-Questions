@@ -2,9 +2,9 @@ class Solution {
 public:
     int subarraysDivByK(vector<int>& nums, int k) {
           unordered_map<int,int>mp;
-        long long sum=0;
-        int ans=0;
-        mp[ans]++;
+          long long sum=0;
+           int ans=0;
+           mp[ans]++;
         for(int i=0;i<nums.size();i++)
         {
             sum+=nums[i];
@@ -15,9 +15,10 @@ public:
                 ans+=mp[temp%k]-1;
             }
             else
-            {mp[sum%k]++;
-            
-            ans+=mp[sum%k]-1;}
+            {
+              mp[sum%k]++;
+             ans+=mp[sum%k]-1;
+            }
         }
        
         return ans;
