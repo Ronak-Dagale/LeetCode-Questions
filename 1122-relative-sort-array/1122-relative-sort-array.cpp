@@ -1,29 +1,32 @@
 class Solution {
 public:
     vector<int> relativeSortArray(vector<int>& arr1, vector<int>& arr2) {
-        vector<int>ans;
-        sort(arr1.begin(),arr1.end());
-        int i=0,j=0;
-        while(j<arr2.size())
-        {
-            i=0;
-           while(i<arr1.size() && arr1[i]<=arr2[j])
-           {
-               if(arr1[i]==arr2[j]){
-                   ans.push_back(arr1[i]);
-                   arr1[i]=-1;
-               }
-               i++;
-           }
-            j++;
+         unordered_map<int, int> countMap;
+        vector<int> remaining, result;
+        // Initialize count map with relative order elements
+        for (int i = 0; i < arr2.size(); i++) {
+            countMap[arr2[i]] = 0;
         }
-        i=0;
-        while(i<arr1.size())
-        {
-           if(arr1[i]!=-1)
-               ans.push_back(arr1[i]);
-            i++;
+        // Count occurrences of elements in target array
+        for (int i = 0; i < arr1.size(); i++) {
+            if (countMap.find(arr1[i]) != countMap.end()) {
+                countMap[arr1[i]]++;
+            } else {
+                remaining.push_back(arr1[i]);
+            }
         }
-        return ans;
+        // Sort the remaining elements
+        sort(remaining.begin(), remaining.end());
+        // Add elements as per relative order
+        for (int i = 0; i < arr2.size(); i++) {
+            for (int j = 0; j < countMap[arr2[i]]; j++) {
+                result.push_back(arr2[i]);
+            }
+        }
+        // Add remaining elements
+        for (int i = 0; i < remaining.size(); i++) {
+            result.push_back(remaining[i]);
+        }
+        return result;
     }
 };
