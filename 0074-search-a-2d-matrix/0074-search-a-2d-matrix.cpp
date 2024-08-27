@@ -1,5 +1,5 @@
 class Solution {
-public:
+public:   
     bool solve(vector<vector<int>>& matrix,int row,int l,int r,int target)
     {
         while(l<=r)
