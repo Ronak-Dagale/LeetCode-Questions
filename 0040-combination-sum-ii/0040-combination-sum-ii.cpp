@@ -1,5 +1,5 @@
 class Solution {
-public:
+public:                      
     void solve(vector<int>& c,int tar,vector<vector<int>>&ans,vector<int>temp,int sum,int id)
     {
         if(sum==tar)
