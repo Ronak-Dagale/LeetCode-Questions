@@ -6,7 +6,7 @@ public:
         
         int dx[]={1,0,-1,0};
         int dy[]={0,1,0,-1};
-        
+         
         for(int k=0;k<4;k++)
         {
             int nx=i+dx[k];
