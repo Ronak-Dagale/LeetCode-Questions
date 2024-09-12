@@ -4,7 +4,7 @@ public:
     {
         if(id==nums.size()) return 0;
         
-        if(dp[id][prev+1]!=-1) return dp[id][prev+1];
+        if(dp[id][prev+1]!=-1) return dp[id][prev+1]; 
         int incl=0,excl=0;
         
         if(prev==-1 || nums[id]>nums[prev])
